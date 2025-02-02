@@ -1,13 +1,18 @@
-const signUpButton=document.getElementById('signUpButton');
-const signInButton=document.getElementById('signInButton');
-const signInForm=document.getElementById('signIn');
-const signUpForm=document.getElementById('signup');
+let signUpButton = document.getElementById("signUpButton");
+let signInButton = document.getElementById("signInButton");
+let nameField = document.getElementById("name");
+let title = document.getElementById("title");
 
-signUpButton.addEventListener('click',function(){
-    signInForm.style.display="none";
-    signUpForm.style.display="block";
-})
-signInButton.addEventListener('click', function(){
-    signInForm.style.display="block";
-    signUpForm.style.display="none";
-})
+signInButton.onclick = function(){
+    nameField.style.maxHeight = "0";
+    title.innerHTML = "Sign In";
+    signUpButton.classList.add("disable");
+    signInButton.classList.remove("disable");
+}
+
+signUpButton.onclick = function(){
+    nameField.style.maxHeight = "60px";
+    title.innerHTML = "Sign Up";
+    signUpButton.classList.remove("disable");
+    signInButton.classList.add("disable");
+}

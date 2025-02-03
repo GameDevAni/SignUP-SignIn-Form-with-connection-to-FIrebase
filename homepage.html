@@ -1,53 +1,30 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-    <style>
-        body{
-            padding:30px;
-            background:linear-gradient(to right, #e2e2e2, #c9d6ff);
-        }
-        h1{
-            text-align:center;
-
-        }
-        button{
-            color:blueviolet;
-            background-color:#c9d6ff;
-            padding:5px;
-            border-radius:5px;
-            font-size:1rem;
-            font-weight:bold;
-            border:none;
-        }
-        button:hover{
-            text-decoration: underline;
-            color:blue;
-        }
-        button, div{
-            margin-left:15%;
-            font-size:20px;
-            padding:10px;
-        }
-        div{
-            font-weight:400;
-            color:rgb(12,11,11);
-
-        }
-        span{
-            font-weight:600;
-            font-size:22px;
-            color:black;
-        }
-    </style>
-    <script type="module" src="./homepage.js"></script>
+    <title>StrayAid</title>
+    <link rel="stylesheet" href="homepage.css">
 </head>
 <body>
-    <h1>Welcome to the Homepage</h1>
-    <div>First Name: <span id="loggedUserFName"></span></div>
-    <div>Email: <span id="loggedUserEmail"></span></div>
-    <button id="logout">Logout</button>
+    <div class="title">
+        <h1>Welcome To StrayAid</h1>
+        <hr>
+        <h3>We Need More Like You</h3>
+    </div>
+    <div class="contact-container">
+        <form action="https://api.web3forms.com/submit" method="POST", class="case-left">
+            <div class="case-left-title">
+                <h2>Ask For Help!</h2>
+                <hr>
+            </div>
+            <input type="hidden" name="access_key" value="7d9b7c15-562f-4f49-8afc-ce18d858c09b">
+            <input type="text" name="phone number" placeholder="Phone Number" class="contact-inputs" required>
+            <textarea name="message" placeholder="Your Message" class="contact-inputs" required></textarea>
+            <button type="submit">Submit Help <img src="strayaid_assets/assets/arrow_icon.png" alt=""></button>
+        </form>
+        <div class="case-right">
+            <img src="strayaid_assets/assets/AAGNrYNikfk_1738593142191.png" alt="">
+        </div>
+    </div>
 </body>
 </html>

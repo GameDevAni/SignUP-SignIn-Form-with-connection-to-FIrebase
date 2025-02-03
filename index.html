@@ -14,18 +14,20 @@
     <div class="form-box">
       <h1 id="title">Sign Up</h1>
       <form>
+        <div id="signUpMessage", class="messageDiv", style="display: none;"></div>
+        <div id="signInMessage", class="messageDiv", style="display: none;"></div>
         <div class="input-group">
           <div class="input-field", id="name">
             <i class="fa-solid fa-user"></i>
-            <input type="text", placeholder="Name">
+            <input type="text", placeholder="Name", id="rName">
           </div>
           <div class="input-field">
             <i class="fa-solid fa-envelope"></i>
-            <input type="email", placeholder="Email">
+            <input type="email", placeholder="Email", id="rEmail">
           </div>
           <div class="input-field">
             <i class="fa-solid fa-lock"></i>
-            <input type="password", placeholder="Password">
+            <input type="password", placeholder="Password", id="rPassword">
           </div>
           <p>Forgot Passowrd? <a href="#">Click Here!</a></p>
         </div>

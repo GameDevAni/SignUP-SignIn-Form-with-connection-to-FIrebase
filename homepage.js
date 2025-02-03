@@ -3,9 +3,13 @@ import {getAuth, onAuthStateChanged, signOut} from "https://www.gstatic.com/fire
 import{getFirestore, getDoc, doc} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js"
 
 const firebaseConfig = {
-    //YOUR COPIED FIREBASE PART SHOULD BE HERE
- //WATCH THIS VIDEO TO LEARN WHAT TO PUT HERE   https://youtu.be/_Xczf06n6x0
-  };
+    apiKey: "AIzaSyC-nw4ul2TWXJLW6-JpGhFZjWUylCoRXb8",
+    authDomain: "strayaid-1b071.firebaseapp.com",
+    projectId: "strayaid-1b071",
+    storageBucket: "strayaid-1b071.firebasestorage.app",
+    messagingSenderId: "950654866966",
+    appId: "1:950654866966:web:62944c3a2f2d283efc0737"
+};
  
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
@@ -22,9 +26,9 @@ const firebaseConfig = {
         .then((docSnap)=>{
             if(docSnap.exists()){
                 const userData=docSnap.data();
-                document.getElementById('loggedUserFName').innerText=userData.firstName;
-                document.getElementById('loggedUserEmail').innerText=userData.email;
-                document.getElementById('loggedUserLName').innerText=userData.lastName;
+                document.getElementById('loggedUserFName').innerText=userData.rName;
+                document.getElementById('loggedUserEmail').innerText=userData.rEmail;
+                
 
             }
             else{

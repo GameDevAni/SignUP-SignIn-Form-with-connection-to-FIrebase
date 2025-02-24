@@ -8,48 +8,37 @@ imageInput.addEventListener("change", function(event){
   previewImage.setAttribute("src", tempUrL);
 });
 
-require("dotenv").config();
-const express = require("express");
-const multer = require("multer");
-const nodemailer = require("nodemailer");
-const cors = require("cors");
+document.getElementById("contactform").addEventListener("submit", async function (event) {
+    event.preventDefault(); // Prevent default form submission
 
-const app = express();
-app.use(cors());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+    let phone = document.querySelector("input[name='phone']").value;
+    let location = document.querySelector("input[name='Location']").value;
+    let message = document.querySelector("textarea[name='message']").value;
+    let imageFile = document.querySelector("#image-input").files[0];
 
-const upload = multer({ storage: multer.memoryStorage() });
-
-app.post("/send-email", upload.single("attachment"), async (req, res) => {
-    const { phone, location, message } = req.body;
-    const file = req.file;
+    let formData = new FormData();
+    formData.append("phone", phone);
+    formData.append("location", location);
+    formData.append("message", message);
+    if (imageFile) {
+        formData.append("image", imageFile);
+    }
 
     try {
-        const transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS,
-            },
+        let response = await fetch("http://127.0.0.1:8090/api/collections/help_requests/records", {
+            method: "POST",
+            body: formData
         });
 
-        const mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: process.env.RECEIVER_EMAIL,
-            subject: `New Contact Form Submission`,
-            text: `Phone: ${phone}\nLocation: ${location}\nMessage: ${message}`,
-            attachments: file
-                ? [{ filename: file.originalname, content: file.buffer }]
-                : [],
-        };
-
-        await transporter.sendMail(mailOptions);
-        res.json({ message: "Email sent successfully with attachment!" });
+        if (response.ok) {
+            alert("Form submitted successfully!");
+            document.getElementById("contactform").reset();
+        } else {
+            alert("Failed to submit the form.");
+        }
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Error sending email" });
+        console.error("Error:", error);
+        alert("Error submitting form.");
     }
 });
 
-app.listen(3000, () => console.log("Server running on port 3000"));
